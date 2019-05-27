@@ -5,6 +5,7 @@ buildscript {
         mavenCentral()
         jcenter()
         google()
+        maven { url "http://dl.bintray.com/kayako-support/kayako-devkits" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.1'

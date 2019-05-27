@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        applicationId "com.kayako.sample"
+        minSdkVersion 16
+        targetSdkVersion 28
+        // multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Added to support Android Joda Time Library & phoenix java client
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+}
+
+repositories {
+    jcenter()
+    maven {
+        url "http://dl.bintray.com/kayako-support/kayako-devkits"
+    }
+
+    // Added to use quick builds by jitpack.io
+    maven { url 'https://jitpack.io' }
+
+}
+
+dependencies {
+    // Add the following dependencies to get the Support SDK to work
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+
+
+    // use local library project (instead of one hosted on bintray)
+    compile project(path: ':app-library')
+
+}
